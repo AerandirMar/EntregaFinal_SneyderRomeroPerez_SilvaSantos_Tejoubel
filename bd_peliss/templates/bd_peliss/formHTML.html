@@ -10,8 +10,10 @@
     <form action="/bd_peliss/formHTML" method="POST">{% csrf_token %}
 
         <p>Nombre: <input type="text" name="name"></p>
-        <p>Fecha de estreno: <input type="number" name="fecha_estreno"></p>
-
+        <p>Fecha de estreno: <input type="text" name="fecha_estreno"></p>
+        <p>Duración: <input type="number" name="duracion"></p>
+        <p>Sinopsis: <input type="text" name="sinopsis"></p>
+        
         <input type="submit" value="Agregar película">
 
     </form>

@@ -8,8 +8,9 @@
 <form action="" method="POST">
     {% csrf_token %}
 
-    {{ cienciaFiccion_form.as_p }}
-
+    <table>
+        {{ cienciaFiccion_form.as_p }}
+    </table>
     <input type="submit" class="btn btn-primary" value="Agregar película" />
 
 </form>

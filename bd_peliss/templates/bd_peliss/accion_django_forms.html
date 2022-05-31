@@ -4,17 +4,13 @@
 
 <h2>Formulario para ingresar película</h2>
 <hr></hr>
-{% if accion_form.errors %}
-    <p style="color: red">Por favor revisar los datos, están mal</p>
-{% endif %}
 
 <form action="" method="POST">
     {% csrf_token %}
 
     <table>
-        {{ accion_form.as_table }}
+        {{ accion_form.as_p }}
     </table>
-
     <input type="submit" class="btn btn-primary" value="Ingresar película" />
 
 </form>

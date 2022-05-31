@@ -30,7 +30,6 @@
 <a class="card_custom" href="{% url 'ComediaDjangoForms' %}">Ingresar nueva película</a>
 <hr></hr>
 <ul>
-        
     <table style="width: 100%">
         <colgroup>
             <col style="width: 20%"/>
@@ -41,7 +40,7 @@
             <tr>
                 <th><strong>Nombre</strong></th>
                 <th><strong>Fecha de estreno</strong></th>
-                <th><strong>Duración</strong></th>
+                <th><strong>Duración (minutos)</strong></th>
                 <th><strong>Sinopsis</strong></th>
             </tr>
     {% for peli in comedias %}
@@ -61,7 +60,6 @@
         </table>
     {% endfor %}
 </ul>
-       
 {% endblock %}
 </body>
 </html>
