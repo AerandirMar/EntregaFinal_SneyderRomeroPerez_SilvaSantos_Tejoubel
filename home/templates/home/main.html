@@ -1,0 +1,151 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+{% if user.is_authenticated %}
+<div class="text-center">
+    <h2>Bienvenido {{ user.username }}</h2>
+    <h3><a style="color: rgb(3, 36, 184)" href="{% url 'user:avatar-load' %}">Cambiar Avatar</a></h3>
+    <img height="160px" src="{{url}}" alt="">
+</div>
+{% endif %}
+<h5>Buscar película de acción</h5>
+<form action="/accion/search" method="GET">
+    <div>
+        <input type="text" name="text_search" id="accion_name" placeholder="Búsqueda por Nombre">
+        <input type="submit" value="Buscar por Nombre">
+    </div>
+    <div>
+        <input type="number" name="fecha_estreno_search" id="accion_fecha_estreno" placeholder="Búsqueda por Año">
+        <input type="submit" value="Buscar por año">
+    </div>
+    <div>
+        <input type="text" name="all_search" id="accion_fecha_estreno" placeholder="Búsqueda general">
+        <input type="submit" value="Buscar">
+    </div>
+    
+</form>
+<hr></hr>
+{% if accions %}
+    <ul>
+        {% for peli in accions %}
+            <li>    
+                <strong>
+                    <ul>
+                        <h5><li>Película: </h5>
+                        <br><h2>{{peli.name}}</li></h2></br>
+                        <li>Fecha de estreno: {{peli.fecha_estreno}}</li>  
+                        <li>Duración: {{peli.duracion}} minutos</li>
+                        <li>Sinopsis: {{peli.sinopsis}}</li>
+                    </ul>        
+                </strong>
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<hr></hr>
+
+<h5>Buscar película de terror</h5>
+<form action="/terror/searchTer" method="GET">
+    <div>
+        <input type="text" name="text_search" id="terror_name" placeholder="Búsqueda por Nombre">
+        <input type="submit" value="Buscar por Nombre">
+    </div>
+    <div>
+        <input type="number" name="fecha_estreno_search" id="terror_fecha_estreno" placeholder="Búsqueda por Año">
+        <input type="submit" value="Buscar por año">
+    </div>
+    <div>
+        <input type="text" name="all_search" id="terror_fecha_estreno" placeholder="Búsqueda general">
+        <input type="submit" value="Buscar">
+    </div>
+    
+</form>
+<hr></hr>
+{% if terrors %}
+    <ul>
+        {% for peli in terrors %}
+            <li>    
+                <strong>
+                    <ul>
+                        <h5><li>Película: </h5>
+                        <br><h2>{{peli.name}}</li></h2></br>
+                        <li>Fecha de estreno: {{peli.fecha_estreno}}</li>  
+                        <li>Duración: {{peli.duracion}} minutos</li>
+                        <li>Sinopsis: {{peli.sinopsis}}</li>
+                    </ul>        
+                </strong>
+        {% endfor %}
+    </ul>
+{% endif %}
+<hr></hr>
+
+<h5>Buscar película de comedia</h5>
+<form action="/comedia/searchCom" method="GET">
+    <div>
+        <input type="text" name="text_search" id="comedia_name" placeholder="Búsqueda por Nombre">
+        <input type="submit" value="Buscar por Nombre">
+    </div>
+    <div>
+        <input type="number" name="fecha_estreno_search" id="comedia_fecha_estreno" placeholder="Búsqueda por Año">
+        <input type="submit" value="Buscar por año">
+    </div>
+    <div>
+        <input type="text" name="all_search" id="comedia_fecha_estreno" placeholder="Búsqueda general">
+        <input type="submit" value="Buscar">
+    </div>
+    
+</form>
+<hr></hr>
+{% if comedias %}
+    <ul>
+        {% for peli in comedias %}
+            <li>    
+                <strong>
+                    <ul>
+                        <h5><li>Película: </h5>
+                        <br><h2>{{peli.name}}</li></h2></br>
+                        <li>Fecha de estreno: {{peli.fecha_estreno}}</li>  
+                        <li>Duración: {{peli.duracion}} minutos</li>
+                        <li>Sinopsis: {{peli.sinopsis}}</li>
+                    </ul>        
+                </strong>
+        {% endfor %}
+    </ul>
+{% endif %}
+<hr></hr>
+
+<h5>Buscar película de ciencia ficción</h5>
+<form action="/drama/searchDra" method="GET">
+    <div>
+        <input type="text" name="text_search" id="cienciaFiccion_name" placeholder="Búsqueda por Nombre">
+        <input type="submit" value="Buscar por Nombre">
+    </div>
+    <div>
+        <input type="number" name="fecha_estreno_search" id="cienciaFiccion_fecha_estreno" placeholder="Búsqueda por Año">
+        <input type="submit" value="Buscar por año">
+    </div>
+    <div>
+        <input type="text" name="all_search" id="cienciaFiccion_fecha_estreno" placeholder="Búsqueda general">
+        <input type="submit" value="Buscar">
+    </div>
+    
+</form>
+<hr></hr>
+{% if drama %}
+    <ul>
+        {% for peli in drama %}
+            <li>    
+                <strong>
+                    <ul>
+                        <h5><li>Película: </h5>
+                        <br><h2>{{peli.name}}</li></h2></br>
+                        <li>Fecha de estreno: {{peli.fecha_estreno}}</li>  
+                        <li>Duración: {{peli.duracion}} minutos</li>
+                        <li>Sinopsis: {{peli.sinopsis}}</li>
+                    </ul>        
+                </strong>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

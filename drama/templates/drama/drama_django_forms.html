@@ -1,0 +1,18 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Formulario para agregar una película de drama</h2>
+<hr></hr>
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <table>
+        {{ drama_form.as_p }}
+    </table>
+    <input type="submit" class="btn btn-primary" value="Agregar película" />
+
+</form>
+
+{% endblock %}

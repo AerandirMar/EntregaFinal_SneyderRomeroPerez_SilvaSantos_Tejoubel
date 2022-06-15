@@ -1,0 +1,33 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Lista de películas</h2>
+{% if user.is_authenticated %}
+<a class="card_custom" href="{% url 'Dramas:drama-add' %}">Crear nuevo Curso</a>
+{% endif %}
+<hr></hr>
+<ul>
+    {% for peli in drama_list %}
+    <li>
+        {peli}}
+        (
+            <a href="{% url 'Dramas:drama-detail' peli.id %}">
+                <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+            </a>
+        {% if user.is_authenticated %}
+        |
+        <a href="{% url 'Dramas:drama-update' peli.id %}">
+            <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"> </i>
+        </a>
+        |
+        <a href="{% url 'Dramas:drama-delete' peli.id %}">
+            <i class="fa fa-trash" style="color: rgb(0, 0, 100);"> </i>
+        </a>
+        {% endif %}
+        )
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

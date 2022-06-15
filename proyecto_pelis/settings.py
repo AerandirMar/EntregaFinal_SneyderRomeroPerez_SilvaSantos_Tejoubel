@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bd_peliss',
+    'home',
+    'accion',
+    'comedia',
+    'drama',
+    'terror',
+    'user',
+    'nosotros',
+    'contacto',
 ]
 
 MIDDLEWARE = [

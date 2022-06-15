@@ -1,0 +1,19 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<h2>Login</h2>
+<hr></hr>
+
+{% if form.errors %}
+<p style="color: red">Combinación de usuario y contraseña incorrecto. Intenta de nuevo, por favor.</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <a class="btn2 btn-dark" href="{% url 'user:user-register' %}" >Registo</a>
+    <button type="submit">Iniciar Sesión</button>
+</form>
+
+{% endblock %}
