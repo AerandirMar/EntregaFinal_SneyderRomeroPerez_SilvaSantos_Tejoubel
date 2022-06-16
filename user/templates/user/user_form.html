@@ -1,15 +1,17 @@
 {% extends "home/index.html" %}
 {% load static %}
-{% block coderhouse_project_content %}
+{% block contenidoQueCambia %}
 
-<h2>Modificar usuarios</h2>
-<hr></hr>
-<h3>Usuario: {{user.username}}</h3>
+    <h1>Editar Perfil de {{user.username}}</h1>
+    
+    <form action="" method="POST">{% csrf_token %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Guardar Usuario" />
-</form>
+        <table>
+
+            {{ form.as_table }}
+
+        </table>
+        <input type="submit", value="Enviar">
+    </form>
 
 {% endblock %}

@@ -5,6 +5,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.forms.models import model_to_dict
 from django.shortcuts import redirect, render
+
 from user.forms import UserRegisterForm, UserEditForm, AvatarForm
 from user.models import Avatar
 
@@ -13,10 +14,14 @@ def register(request):
     if request.method == 'POST':
         form = UserRegisterForm(request.POST)
         if form.is_valid():
+            username = form.cleaned_data['username']
             form.save()
-            messages.success(request, "Usuario creado exitosamente!")
-            return redirect("user:user-login")
-    form = UserRegisterForm()
+            return render(request, 'home/main.html', {'mensaje': 'Usuario creado'})
+
+            #messages.success(request, "Usuario creado exitosamente!")
+            #return redirect("user:user-login")
+    else:        
+        form = UserRegisterForm()
     return render(
         request=request,
         context={"form":form},
@@ -33,7 +38,10 @@ def login_request(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("home:main")
+                return render(request, "home/main.html", {"mensaje":f"Bienvenido {user}"} )
+
+            else:
+                return render(request, "home/main.html", {"mensaje":"Error, datos incorrectos"})    
 
         return render(
             request=request,
@@ -58,18 +66,27 @@ def logout_request(request):
 def user_update(request):
     user = request.user
     if request.method == 'POST':
-        form = UserEditForm(request.POST, instance=request.user)
+        form = UserEditForm(request.POST)
         if form.is_valid():
-            form.save()
+            info = form.cleaned_data
+            user.email = info['email']
+            user.password1 = info['password1']
+            user.pasword2 = info['password2']
+            user.save()
 
-            return redirect('home:main')
+            return render(request, "home/main.html")
+            #return redirect('home:main')
 
-    form= UserEditForm(model_to_dict(user))
-    return render(
-        request=request,
-        context={'form': form},
-        template_name="user/user_form.html",
-    )
+    else: 
+        form = UserEditForm(initial={'email':user.email})
+
+    return render(request, 'user/user_form.html', {'form':form, 'user':user})
+    #form= UserEditForm(model_to_dict(user))
+    #return render(
+    #    request=request,
+    #    context={'form': form},
+    #    template_name="user/user_form.html",
+    #)
 
 
 @login_required
